@@ -1,0 +1,186 @@
+label{
+    margin: 0px 15px;
+    cursor: pointer;
+}
+
+.titulo{
+    width: 100%;
+    padding: 10px 0px;
+    background-color: #2AAE79;
+    text-align: center;
+    border: 1px solid #558564;
+}
+
+/*Si deseamos que el contenedor sea un display de forma correcta, hay que hacerlo un flex container*/
+.contenedor {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around; /*Hacer un espacio entre botones bajo un rango*/
+    gap: 6px; /*Espacio entre botones*/
+    background-color: #69EBD0;
+    border: 1px solid #95F9E3;
+    transition: transform 0.2s ease, border 0.2s ease;
+}
+
+/*Settings menu*/
+.settings-menu{
+    position: absolute;   
+    top: 10px;
+    right: 10px;
+}
+.settings-btn{
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #232322;
+    font-size: 28px;
+}
+.settings-dropdown{
+    display: none;
+    position: absolute;
+    flex-direction: row;
+    top: 30;
+    right: 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    width: max-content;
+    z-index: 10;
+}
+.settings-dropdown.show{
+    display: block;
+}
+.settings-item{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 4px 0px;
+    margin: 10px 0px;
+}
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+    margin: 0;
+}
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+}
+.slider:before{
+    content: "";
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    left: 2px;
+    bottom: 2px;
+    background-color: #ffffff;
+    transition: .4s;
+}
+input:checked + .slider:before{
+    transform: translateX(26px);
+}
+.slider.round {
+    border-radius: 24px;
+}
+.slider.round:before{
+    border-radius: 50%;
+}
+
+.boton{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    cursor: pointer;
+}
+
+/*Agregamos efecto al pasar el mouse en el botón*/
+.boton:hover{
+    transform: scale(1.05);
+    border: 2px solid #232322;
+}
+
+/*Customizamos la aparación del tooltip como tal*/
+.boton[data-title]{
+    position: block;
+}
+
+.boton[data-title]:hover::after{
+    content: attr(data-title);
+    position: absolute;
+    top: 120%; /*Posicionar justo debajo del botón*/
+    left: 50%;
+    transform: translateX(-50%);
+
+    background-color: #333;
+    color: #fff;
+    padding: 5px;
+    border-radius: 4px;
+    font-size: 14px;
+    white-space: nowrap;
+
+    /*Detectar si hay un overflow en el lado izquierdo o derecho*/
+    white-space: normal;
+    max-width: 400px;
+    min-width: 300px;
+    text-align: center;
+
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+/*Pruebas para checar que el sistema o el tooltip no hace overloop*/
+@media screen and (max-width: 600px){
+    .boton[data-title]:hover::after{
+        max-width: 300px;
+    }
+}
+
+/*Controlando casos de estar muy al borde*/
+.boton[data-title]:hover::after{
+    left: auto;
+    right: 10px;
+    transform: none;
+}
+
+/*Darkmode*/
+
+/*Básicamente le decimos que cheque la info del padre, quien está en modo oscuro*/
+:host-context(body.night-mode) .titulo {
+    background-color: #558564;
+    color: #D0E2DE;
+}
+
+:host-context(body.night-mode) .contenedor {
+    background-color: #333333;
+    border: 2px solid #444444;
+}
+
+:host-context(body.night-mode) .boton{
+    background-color: #333333;
+    color: #D0E2DE;
+}
+
+:host-context(body.night-mode) .boton[data-title]:hover::after{
+    background-color: #69EBD0;
+    color: #232322; 
+}
+:host-context(body.night-mode) .settings-dropdown{
+    background-color: #111110;
+    border: 1px solid #1B1B18;
+}

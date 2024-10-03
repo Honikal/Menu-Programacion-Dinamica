@@ -1,0 +1,42 @@
+<div class="titulo">
+    <h1>Ejercicios de Programación Dinámica</h1>
+    <div class="settings-menu">
+        <button class="settings-btn" (click)="toggleSettings()">
+            <i class="fa-solid fa-gears"></i>
+        </button>
+        <div class="settings-dropdown" [ngClass]="{ 'show': showSettingsMenu }">
+            <div class="settings-item">
+                <label for="darkMode">Modo oscuro</label>
+                <label class="switch">
+                    <input type="checkbox" id="darkMode" (change)="toggleNightMode($event)"> 
+                    <span class="slider round"></span>
+                </label>
+            </div>
+            <div class="settings-item">
+                <label for="language">Lenguaje</label>
+                <select id="language" (change)="changeLanguage($event)">
+                    <option value="es" selected>Español</option>
+                    <option value="en">English</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="contenedor">
+    <div class="boton" [attr.data-title]="toolTipText1" (click)="navigateTo('rutas-cortas')">
+        <h3>Rutas más cortas</h3>
+    </div>
+    <div class="boton" [attr.data-title]="toolTipText2" (click)="navigateTo('Mochila')">
+        <h3>Problema de la Mochila</h3>
+    </div>
+    <div class="boton" [attr.data-title]="toolTipText3" (click)="navigateTo('Series')">
+        <h3>Series Deportivas</h3>
+    </div>
+    <div class="boton" [attr.data-title]="toolTipText4" (click)="navigateTo('Arboles')">
+        <h3>Arboles Binarios de Busqueda Optimos</h3>
+    </div>
+    <div class="boton" [attr.data-title]="toolTipText5" (click)="navigateTo('')">
+        <h3>Salir del programa</h3>
+    </div>
+</div>
