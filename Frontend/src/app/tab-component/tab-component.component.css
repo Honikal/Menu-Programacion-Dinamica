@@ -4,11 +4,20 @@ label{
 }
 
 .titulo{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     width: 100%;
-    padding: 10px 0px;
-    background-color: #2AAE79;
-    text-align: center;
+    padding: 20px;
+    background-color: #1A535C;
+    color: #F7FFF7;
     border: 1px solid #558564;
+    box-sizing: border-box;  /* Ensures padding is included in width calculations */
+}
+
+.titulo h1{
+    flex: 1;
+    text-align: center;
 }
 
 /*Si deseamos que el contenedor sea un display de forma correcta, hay que hacerlo un flex container*/
@@ -17,31 +26,47 @@ label{
     flex-direction: row;
     justify-content: space-around; /*Hacer un espacio entre botones bajo un rango*/
     gap: 6px; /*Espacio entre botones*/
-    background-color: #69EBD0;
+    background-color: #AECDC4;
     border: 1px solid #95F9E3;
     transition: transform 0.2s ease, border 0.2s ease;
 }
 
-/*Settings menu*/
-.settings-menu{
-    position: absolute;   
-    top: 10px;
-    right: 10px;
-}
-.settings-btn{
+/*Icono svg*/
+.home-button, .settings-btn {
+    display: flex;
+    align-items: center;
     background: none;
     border: none;
     cursor: pointer;
-    color: #232322;
-    font-size: 28px;
+    color: #F7FFF7;
+    padding: 0;
 }
+.home-button i,
+.settings-btn i {
+    font-size: 1.5em;
+}
+
+
+/*
+.home-button img,
+.settings-btn img{
+    width: 28px;
+    height: 28px;
+}
+*/
+
+/*Settings menu*/
+.settings-menu{
+    position: relative;
+}
+
 .settings-dropdown{
     display: none;
     position: absolute;
     flex-direction: row;
-    top: 30;
+    top: 100%;
     right: 0;
-    background-color: #fff;
+    background-color: #1A535C;
     border: 1px solid #ccc;
     padding: 10px;
     border-radius: 4px;
@@ -108,6 +133,7 @@ input:checked + .slider:before{
     justify-content: center;
     width: 100%;
     cursor: pointer;
+    color: #1A535C;
 }
 
 /*Agregamos efecto al pasar el mouse en el botón*/
@@ -161,26 +187,9 @@ input:checked + .slider:before{
 /*Darkmode*/
 
 /*Básicamente le decimos que cheque la info del padre, quien está en modo oscuro*/
-:host-context(body.night-mode) .titulo {
-    background-color: #558564;
-    color: #D0E2DE;
-}
 
-:host-context(body.night-mode) .contenedor {
-    background-color: #333333;
-    border: 2px solid #444444;
-}
-
-:host-context(body.night-mode) .boton{
-    background-color: #333333;
-    color: #D0E2DE;
-}
 
 :host-context(body.night-mode) .boton[data-title]:hover::after{
     background-color: #69EBD0;
     color: #232322; 
-}
-:host-context(body.night-mode) .settings-dropdown{
-    background-color: #111110;
-    border: 1px solid #1B1B18;
 }

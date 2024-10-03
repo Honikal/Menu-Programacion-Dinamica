@@ -1,1 +1,15 @@
-<p>proyecto01-io works!</p>
+<div class="contenedor">
+    <h1>Rutas más Cortas</h1>
+    <div class="input-wrapper">
+        <label>Cantidad de nodos</label>
+        <div class="spinner-wrapper">
+            <button type="button" class="spinner-button" (click)="decreaseValue()">-</button>
+            <input id="nodeCount" type="number" min="1" max="10" [(ngModel)]="nodeCount" (wheel)="disableScroll($event)">
+            <button type="button" class="spinner-button" (click)="increaseValue()">+</button>
+        </div>
+    </div>
+    <button class="btn-gen-nodes" (click)="generate()">Generar</button>
+
+
+
+</div>

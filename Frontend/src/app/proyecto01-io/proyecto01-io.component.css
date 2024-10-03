@@ -1,0 +1,69 @@
+.contenedor{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    padding: 6px;
+    height: 100vh; /*Full altura para el centrado*/
+    border: 1px solid black;
+}
+
+.contenedor h1 {
+    text-align: center;
+}
+
+.input-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.input-wrapper label{
+    font-size: 20px;
+}
+
+.spinner-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.spinner-button {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+    cursor: pointer;
+    background-color: #FF6B6B;
+    border: 1px solid black;
+}
+
+.spinner-button:hover{
+    background-color: #FF3B3B;
+}
+
+
+/*Agregar estilo al number input*/
+#nodeCount {
+    width: 60px;
+    height: 25px;
+    font-size: 17px;
+    margin: 0 5px;
+}
+
+/*Botón para generar datos*/
+.btn-gen-nodes{
+    padding: 12px 30px;
+    width: 10%;
+    font-size: 20px;
+    cursor: pointer;
+    background-color: #FF6B6B;
+    border: 1px solid #ec9898;
+    color: white;
+    transition: background-color 3s ease;
+}
+
+button:hover{
+    background-color: #FF3B3B;
+}
+

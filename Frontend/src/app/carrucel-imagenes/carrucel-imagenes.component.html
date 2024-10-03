@@ -1,0 +1,26 @@
+<div class="container">
+    <!--Wrapper para todas las imágenes-->
+    <div class="image-wrapper" [style.transform]="getTransform()">
+        <!--Usar *ngFor acá permite iterar por todas las imágenes dentro del array de imágenes como tal-->
+        <div class="image-wrapper" *ngFor="let image of images; let i = index">
+            <!--Iteramos sobre todas las imágenes-->
+            <img [src]="image.url" [alt]="image.altText">
+            <div class="bubble"> {{ image.feedback }}</div>
+        </div>
+    </div>
+
+    <!--Flechas de navegación-->
+    <div class="arrow left-arrow"  (click)="prevSlide()" *ngIf="showArrows"></div>
+    <div class="arrow right-arrow" (click)="nextSlide()" *ngIf="showArrows"></div>
+
+    <!-- Puntos de navegación -->
+    <div class="dots">
+        <span *ngFor="let image of images; let i = index"
+            [class.active]="i === currentIndex"
+            (click)="goToSlide(i)"
+        >
+        </span>
+    </div>
+    
+</div>
+
