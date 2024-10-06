@@ -1,0 +1,85 @@
+<div class="contenedor">
+    <h1>Series deportivas</h1>
+    <div class="input-wrapper">
+        <label>Cantidad de partidas</label>
+        <div class="spinner-wrapper">
+            <input id="gamesCount" type="number" min="1" max="11" step="2" [(ngModel)]="gamesCount">
+        </div>
+    </div>
+
+    <button class="btn-gen" (click)="generate()">Generar</button>
+
+    <!-- Sección de tablero -->
+    <div *ngIf="showGameSetup" class="game-location">
+        <h2>Asignar juegos a cada equipo</h2>
+        <div class="game-grid">
+            <div class="team-home team-A">
+                <label>Equipo A</label>
+                <div *ngFor="let game of gameLocations; let i = index;" 
+                    class="game"
+                    [ngClass]="{'selected-A': game === 'A'}"
+                    (click)="setGameLocation(i, 'A')">
+                    <span [class.selected]="game === 'A'">Juego {{i + 1}}</span>
+                </div>
+            </div>
+
+            <div class="team-home team-B">
+                <label>Equipo B</label>
+                <div *ngFor="let game of gameLocations; let i = index;" 
+                    class="game"
+                    [ngClass]="{'selected-B': game === 'B'}"
+                    (click)="setGameLocation(i, 'B')">
+                    <span [class.selected]="game === 'B'">Juego {{i + 1}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sección de Probabilidades -->
+    <div *ngIf="showGameSetup" class="probabilities">
+        <div class="team-probabilities">
+            <h3>Equipo A</h3>
+            <div>
+                <label for="ph">Probabilidad de ganar en casa (TEAM A):</label>
+                <input type="number" id="ph" [(ngModel)]="ph" (input)="updateProbabilities()" min="1" max="100">
+                <span> %</span>
+            </div>
+            <div>
+                <label for="pr">Probabilidad de ganar como visitante (TEAM A):</label>
+                <input type="number" id="pr" [(ngModel)]="pr" (input)="updateProbabilities()" min="1" max="100">
+                <span> %</span>
+            </div>
+        </div>
+
+        <div class="team-probabilities">
+            <h3>Equipo B</h3>
+            <div>
+                <label for="qr">Probabilidad de ganar como visitante (TEAM B):</label>
+                <input type="number" id="qr" [value]="qr" readonly>
+                <span> %</span>
+            </div>
+            <div>
+                <label for="qh">Probabilidad de ganar en casa (TEAM B):</label>
+                <input type="number" id="qh" [value]="qh" readonly>
+                <span> %</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Botón para generar y validar los datos -->
+    <button *ngIf="showGameSetup" class="btn-gen" (click)="validateAndGenerate()">Generar series</button>
+
+    <!-- Tabla para mostrar la matriz de la serie generada -->
+    <div *ngIf="generatedSeries.length > 0" class="series-table">
+        <h2>Resultados de la serie</h2>
+        <table>
+            <tr *ngFor="let row of generatedSeries; let i = index">
+                <ng-container *ngFor="let value of row; let j = index">
+                    <td *ngIf="!(i === 0 && j === 0)">
+                        {{value}}
+                    </td>
+                </ng-container>
+            </tr>
+        </table>
+    </div>
+</div>

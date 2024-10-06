@@ -1,0 +1,60 @@
+.contenedor{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 6px;
+    height: 100%; /*Full altura para el centrado*/
+    border: 1px solid black;
+}
+
+.contenedor h1 {
+    text-align: center;
+}
+
+.input-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+.input-wrapper label{
+    font-size: 20px;
+}
+.spinner-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.bagCount {
+    width: 60px;
+    height: 25px;
+    font-size: 17px;
+    margin: 0 5px;
+    margin-right: 40px;
+}
+
+/*Botón para generar datos*/
+.btn-gen{
+    padding: 12px 30px;
+    width: 10%;
+    font-size: 20px;
+    cursor: pointer;
+    background-color: #FF6B6B;
+    border: 1px solid #ec9898;
+    color: white;
+    transition: background-color 3s ease;
+}
+
+.mode-selector{
+    margin: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.help-text{
+    margin-top: 10px;
+    font-size: 14px;
+    color: #666;
+}
+

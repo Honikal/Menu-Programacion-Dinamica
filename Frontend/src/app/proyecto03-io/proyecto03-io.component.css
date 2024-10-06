@@ -1,0 +1,135 @@
+.contenedor{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 6px;
+    height: 100%; /*Full altura para el centrado*/
+    border: 1px solid black;
+}
+
+.contenedor h1 {
+    text-align: center;
+}
+
+.input-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.input-wrapper label{
+    font-size: 20px;
+}
+
+.spinner-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+/*Agregar estilo al number input*/
+#gamesCount {
+    width: 60px;
+    height: 25px;
+    font-size: 17px;
+    margin: 0 5px;
+}
+
+/*Botón para generar datos*/
+.btn-gen{
+    padding: 12px 30px;
+    width: 10%;
+    font-size: 20px;
+    cursor: pointer;
+    background-color: #FF6B6B;
+    border: 1px solid #ec9898;
+    color: white;
+    transition: background-color 3s ease;
+}
+
+/*Localización del juego*/
+.game-location{
+    margin-top: 20px;
+}
+.game-location{
+    text-align: center;
+}
+.game-grid{
+    display: flex;
+    justify-content: space-between;
+    gap: 460px;
+}   
+.team-home{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+.game{
+    cursor: pointer;
+    padding: 15px;
+    margin: 5px 0;
+    border: 1px solid #FF6B6B;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+.game span{
+    cursor: pointer;
+}
+.game.selected-A{
+    background-color: #1A535C;
+    color: #F7FFF7;
+
+    font-weight: bold;
+}   
+.game.selected-B{
+    background-color: #4ECDC4;
+    color: #1A535C;
+
+    font-weight: bold;
+}                                                                                                                       
+
+/*Sección de probabilidades*/
+.probabilities {
+    margin: 30px 0;
+    display: flex;
+    gap: 50px;
+}
+.team-probabilities {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+.team-probabilities label, .team-probabilities span{
+    font-size: 20px;
+}
+.team-probabilities h3{
+    text-align: left;
+}
+.team-probabilities input {
+    margin-left: 10px;
+    width: 80px;
+    height: 30px;
+    font-size: 18px;
+}
+
+/*Tabla de datos como tal a mostrar*/
+.series-table{
+    margin-top: 20px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+.series-table table{
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+.series-table td{
+    border: 1px solid #FF6B6B;
+    padding: 8px;
+    text-align: center;
+}
+
+

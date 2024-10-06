@@ -1,0 +1,32 @@
+<div class="contenedor">
+    <h1>Problema de la mochila</h1>
+    <div class="input-wrapper">
+        <label>Capacidad máxima de mochila:</label>
+        <div class="spinner-wrapper">
+            <input class="bagCount" type="number" min="1" max="20" [(ngModel)]="bagSize">
+        </div>
+
+        <label>Cantidad máxima de objetos:</label>
+        <div class="spinner-wrapper">
+            <input class="bagCount" type="number" min="1" max="10" [(ngModel)]="objCount">
+        </div>
+    </div>
+    <button class="btn-gen" (click)="generate()">Generar</button>
+
+    <div *ngIf="showObjectSection" class="mode-selector">
+        <label>Seleccione el modo:</label>
+        <select [(ngModel)]="mode">
+            <option value="1/0">Modo 0/1</option>
+            <option value="bounded">Modo bounded</option>
+            <option value="unbounded">Modo bounded</option>
+        </select>
+        <button (click)="toggleHelp()">
+            <i class="fa-solid fa-circle-info"></i>
+        </button>
+        <div *ngIf="showHelpText" class="help-text">
+            <p>El modo 0/1 hace que el algoritmo tenga que seleccionar 0 o 1 objetos posibles de cada uno para entrar en la mochila</p>
+            <p>El modo bounded permite usar una cantidad limitante por cada objeto, de no darse valor se considera infinita</p>
+            <p>El modo unbounded, se considera que la cantidad posible de cada objeto es infinita, por lo tanto, se encarga de maximizar con base a ésto</p>
+        </div>
+    </div>
+</div>
