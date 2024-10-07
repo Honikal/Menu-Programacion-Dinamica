@@ -46,15 +46,174 @@
     transition: background-color 3s ease;
 }
 
+/*Manejo y selector*/
 .mode-selector{
     margin: 20px;
     display: flex;
     align-items: center;
     gap: 10px;
 }
-.help-text{
-    margin-top: 10px;
+.mode-selector label{
+    font-size: 24px;
+}
+.mode-selector select{
+    height: 30px;
+    font-size: 17px;
+    width: 180px;
+}
+.mode-selector button{
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+    border: none;
+    background: none;
+    position: relative;
+}
+.mode-selector button i{
+    font-size: 25px;
+    color: #000;
+}
+.help-bubble{
+    position: absolute;
+    top: 35px;
+    left: 0;
+    border: 1px thick #F7FFF7;    
+    background-color: #4ECDC4;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    width: 250px;
+    z-index: 1000;
+    visibility: hidden;
+}
+.help-bubble p {
+    margin: 0;
     font-size: 14px;
-    color: #666;
+}
+.mode-selector button:hover .help-bubble,
+.help-bubble:hover{
+    visibility: visible;
+}
+
+/*Manejo y control de datos*/
+.objects-label{
+    text-align: center;
+    font-size: 24px;
+    margin-top: 20px;
+}
+.object-section{
+    margin-bottom: 14px;
+    width: 100%;
+}
+.object-input-wrapper{
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+}   
+.object-data{
+    display: flex;
+    flex-direction: row;
+    margin: 0 10px;
+    align-items: center;
+    justify-content: space-between;
+}
+.object-input-wrapper label{
+    font-size: 20px;
+} 
+.object-input{
+    width: 220px;
+    height: 25px;
+    font-size: 17px;
+    margin-left: 25px;
+    text-align: end;
+}
+.non-editable{
+    background-color: #1A535C;
+    pointer-events: none;
+    color: #F7FFF7;
+}
+
+/*Sección de datos, ecuación*/
+.modal{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    position: fixed;
+
+    width: 30%;
+    max-height: 60%;   /*De ésta con un max-height y un sistema de overflow-y, deberíamos poder habilitar el scroll*/
+    overflow-y: auto;
+
+    margin: 20px;
+    padding: 15px;
+    background-color: #4ECDC4;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    font-size: 17px;
+
+    z-index: 1000;
+
+}
+
+.modal-content {
+    padding: 20px;
+    border-radius: 8px;
+    width: 100%;
+    position: relative;
+}
+
+.modal-content p, .modal-content h2, .modal-content h3 {
+    color: black;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0px;
+    align-content: center;
+}
+.close-btn i {
+    font-size: 30px;
+    text-align: center;
+}
+
+.variables {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 5px;
+    color: black;
+}
+
+/*Sección de datos, tabla*/
+.table-wrapper {
+    margin-top: 20px;
+    overflow-x: auto;
+    width: 100%;
+}   
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+table th, table td{
+    border: 1px solid #ff6b6b;
+    padding: 8px;
+    text-align: center;
+    font-size: 16px;
+    color: black;
+}
+
+table th {
+    background-color: #FFE66D;
+    color: black;
 }
 

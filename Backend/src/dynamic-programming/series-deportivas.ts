@@ -13,15 +13,11 @@ export class SeriesDeportivas {
             { length: toWin + 1 }, () => Array(toWin + 1).fill(0)
         );
 
-        console.log(dp);
-
         //Creamos las probabilidades
         const ph = probabilidadGanarEnCasa / 100;
         const pr = probabilidadGanarVisitante / 100;
         const qr = 1 - ph;
         const qh = 1 - pr; 
-
-        console.log(`Values: ${ph} - ${pr} - ${qr} - ${qh}`);
 
         /*Casos trivial inicial, llenamos los campos de la fila 1 de 1, y el valor de la izquina
         superior izquierda en 0*/

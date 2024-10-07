@@ -15,18 +15,120 @@
 
     <div *ngIf="showObjectSection" class="mode-selector">
         <label>Seleccione el modo:</label>
-        <select [(ngModel)]="mode">
+        <select [(ngModel)]="mode" (change)="updateMode()">
             <option value="1/0">Modo 0/1</option>
             <option value="bounded">Modo bounded</option>
-            <option value="unbounded">Modo bounded</option>
+            <option value="unbounded">Modo unbounded</option>
         </select>
-        <button (click)="toggleHelp()">
+        <button>
             <i class="fa-solid fa-circle-info"></i>
+            <div class="help-bubble">
+                <p *ngIf="mode === '1/0' ">El modo 0/1 hace que el algoritmo tenga que seleccionar 0 o 1 objetos posibles de cada uno para entrar en la mochila</p>
+                <p *ngIf="mode === 'bounded' ">El modo bounded permite usar una cantidad limitante por cada objeto, de no darse valor se considera infinita</p>
+                <p *ngIf="mode === 'unbounded' ">El modo unbounded, se considera que la cantidad posible de cada objeto es infinita, por lo tanto, se encarga de maximizar con base a ésto</p>
+            </div>
         </button>
-        <div *ngIf="showHelpText" class="help-text">
-            <p>El modo 0/1 hace que el algoritmo tenga que seleccionar 0 o 1 objetos posibles de cada uno para entrar en la mochila</p>
-            <p>El modo bounded permite usar una cantidad limitante por cada objeto, de no darse valor se considera infinita</p>
-            <p>El modo unbounded, se considera que la cantidad posible de cada objeto es infinita, por lo tanto, se encarga de maximizar con base a ésto</p>
+        
+    </div>
+
+    <div *ngIf="showObjectSection">
+        <h2 class="bjects-label">Objetos</h2>
+        <div *ngFor="let object of objects; let i = index" class="object-section">
+            <h3>Objeto {{i + 1}}</h3>
+            <div class="object-input-wrapper">
+                <div class="object-data">
+                    <label>Nombre del objeto: </label>
+                    <input class="object-input" type="text" [(ngModel)]="object.name"/>
+                </div>
+                <div class="object-data">
+                    <label>Valor del objeto: </label>
+                    <input class="object-input" type="number" [(ngModel)]="object.value" min="1" required/>
+                </div>
+                <div class="object-data">
+                    <label>Peso/Costo del objeto: </label>
+                    <input class="object-input" type="number" [(ngModel)]="object.size" min="1" required/>
+                </div>
+                <div class="object-data">
+                    <label>Cantidad del objeto: </label>
+                    <ng-container [ngSwitch]="mode">
+                        <input *ngSwitchCase="'1/0'"
+                            class="object-input non-editable"
+                            type="number"
+                            value="1"
+                            readonly
+                        />
+                        <input *ngSwitchCase="'bounded'"
+                            class="object-input"
+                            type="number"
+                            [(ngModel)]="object.amount"
+                            min="1"
+                            value="1"
+                        />
+                        <input *ngSwitchCase="'unbounded'"
+                            class="object-input non-editable"
+                            type="text"
+                            value="Infinito"
+                            readonly
+                        />
+                    </ng-container>
+                </div>
+            </div>
+            
         </div>
     </div>
+
+    <!-- Botón para generar los datos -->
+    <button *ngIf="showObjectSection" class="btn-gen" (click)="validateAndGenerate()">Generar datos de mochila</button>
+
+    <!-- Botón para mostrar el modal una vez cerrado y generado datos por primera vez -->
+    <button *ngIf="showModalButton" class="btn-gen" (click)="openModal()">Mostrar resultados</button>
+
+    <!-- Sección para generar los datos de la aplicación -->
+
+    <!-- Display equation -->
+    <div *ngIf="showResults" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" (click)="closeModal()">
+                <i class="fa-solid fa-circle-xmark"></i>
+            </button>
+
+            <h2 class="">Resultado de la operación</h2>
+            <div>
+                <p>{{equation.equation}}</p>
+                <p>Sujeto a: </p>
+                <p>{{equation.restriccion}}</p>
+                <div *ngFor="let restriccion of equation.restricciones">
+                    <p>{{ restriccion }}</p>
+                </div>
+
+                <h3>Solución Óptima</h3>
+                <p>Z = {{equation.Z}}</p>
+                <div class="variables">
+                    <span *ngFor="let variable of equation.lista_variables; let i = index">
+                        X_{{i + 1}} = {{variable}}
+                    </span>
+                </div>
+            </div>
+
+            <h3>Tabla de resultados</h3>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th *ngFor="let name of objects_names">{{name}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let row of tabla; let rowIndex = index">
+                            <td>{{ rowIndex }}</td>
+                            <td *ngFor="let value of row">{{ value }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>  
+
 </div>
