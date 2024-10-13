@@ -1,0 +1,1 @@
+{"keyCount":4,"nodos":[{"name":"Harrison","value":0.18},{"name":"Lennon","value":0.32},{"name":"McCartney","value":0.39},{"name":"Starr","value":0.11}],"tablaA":[[0,0.18,0.68,1.46,1.79],[null,0,0.32,1.03,1.25],[null,null,0,0.39,0.61],[null,null,null,0,0.11],[null,null,null,null,0]],"tablaR":[[0,1,2,2,2],[0,0,2,3,3],[0,0,0,3,3],[0,0,0,0,4],[0,0,0,0,0]]}

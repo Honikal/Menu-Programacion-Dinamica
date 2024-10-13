@@ -1,5 +1,12 @@
 <div class="contenedor">
     <h1>Árboles binarios de búsqueda óptimos</h1>
+
+    <!-- Botones de exportar e importar -->
+    <div class="button-row">
+        <button class="btn-manage" (click)="exportToJson()">Exportar ejercicio</button>
+        <input type="file" class="btn-manage" (change)="importFromJson($event)">
+    </div>
+
     <div class="input-wrapper">
         <label>Cantidad de llaves que debe tener el árbol:</label>
         <div class="spinner-wrapper">
@@ -8,6 +15,74 @@
     </div>
     <button class="btn-gen" (click)="generate()">Generar</button>
 
+    <div *ngIf="showKeysSection" class="section-keys">
+        <h2>Selección de nodos</h2>
+        <div *ngFor="let nodo of nodos; let i = index" class="node-section">
+            <div class="node-input-wrapper">
+                <div class="node-data">
+                    <label>Nombre o llave del nodo: </label>
+                    <input type="text" [(ngModel)]="nodo.name"/>
+                </div>
+                <div class="node-data">
+                    <label>Valor del nodo: </label>
+                    <input type="number" [(ngModel)]="nodo.value" min="0" max="1" step="0.01"/>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Botón para generar los datos -->
+    <button *ngIf="showKeysSection" class="btn-gen" (click)="validateAndGenerate()">Generar datos del árbol</button>
+    <button *ngIf="showModalButton" class="btn-gen" (click)="openModal()">Mostrar resultados</button>
+
+    <!-- Mostrar las 2 tablas y en un futuro el árbol generado -->
+    <div *ngIf="showResults" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" (click)="closeModal()">
+                <i class="fa-solid fa-circle-xmark"></i>
+            </button>
+            
+            <h2>Tablas</h2>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tabla A</th>
+                            <th *ngFor="let row of tablaA; let i = index;">{{ i }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let row of tablaA; let rowIndex = index">
+                            <td>{{ rowIndex + 1 }}</td>
+                            <td *ngFor="let value of row; let colIndex = index">
+                                <span *ngIf="colIndex >= rowIndex">{{ value }}</span>
+                                <span *ngIf="colIndex < rowIndex"> </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tabla R</th>
+                            <th *ngFor="let row of tablaR; let i = index;">{{ i }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let row of tablaR; let rowIndex = index">
+                            <td>{{ rowIndex + 1 }}</td>
+                            <td *ngFor="let value of row; let colIndex = index">
+                                <span *ngIf="colIndex >= rowIndex">{{ value }}</span>
+                                <span *ngIf="colIndex < rowIndex"> </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+                
+        </div>
+    </div>
 
 
 </div>

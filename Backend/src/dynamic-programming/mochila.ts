@@ -28,7 +28,7 @@ export class Mochila {
         const dp: number[][] = Array.from(
             { length: n + 1 }, () => Array(bagSize + 1).fill(0)        
         );
-
+        
         //Creamos la función para mostrar el problema resuelto en forma matemática
         /*Ésto lo cambiamos, al final es más práctico igual tener control de ésto con base
         a una tabla*/

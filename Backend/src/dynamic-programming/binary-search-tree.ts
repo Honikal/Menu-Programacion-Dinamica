@@ -3,11 +3,17 @@ export interface nodeItem {
     value: number
 }
 
+export interface TreeNode{
+    name: string,
+    value: number,
+    left: TreeNode | null,
+    right: TreeNode | null
+}
 
 export class optimal_binary_search_tree {
     static obst(
         nodos: nodeItem[]
-    ) : { A: number[][], R: number[][] } {
+    ) : { A: number[][], R: number[][], sortedNodos: nodeItem[] } {
         const k = nodos.length; //Cantidad de llaves
 
         //Ordenamos los nodos basados en el nombre, de forma alfabética
@@ -52,7 +58,48 @@ export class optimal_binary_search_tree {
             }
         }
 
-        return { A, R };
+        //Nada más modificamos el último valor de la matrix A
+        A[A.length - 1][A.length - 1] = 0;
+
+        return { A, R, sortedNodos };
+    }
+
+    static buildTree(
+        tablaR: number[][],
+        sortedNodos: nodeItem[],
+        start: number, 
+        end: number
+    ) : TreeNode | null {
+        //Caso básico, si el valor mayor es más grande que el punto final, no existe un nodo
+        if (start >= end){
+            return null;
+        }
+
+        //Tomamos la raíz index del rango actual
+        const rootIndex = tablaR[start][end] - 1; //Ajustamos para que esté en base 0
+
+        //Creamos un nuevo árbol nodo usando la raíz seleccionada de sortedNodos
+        const rootNodo : TreeNode = {
+            name: sortedNodos[rootIndex].name,
+            value: sortedNodos[rootIndex].value,
+            left: null,
+            right: null
+        };
+
+        //De forma recursiva, construimos árboles izquierdos y derechos
+        //Subarbol izquierdo, desde el valor inicial hasta rootIndex - 1 
+        rootNodo.left = this.buildTree(tablaR, sortedNodos, start, rootIndex);
+        //Subarbol derecho, desde rootIndex - 1 hasta el valor final de la lista
+        rootNodo.right = this.buildTree(tablaR, sortedNodos, rootIndex + 1, end);
+
+        return rootNodo;
+    }
+
+    static generateTree(
+        tablaR: number[][], 
+        sortedNodos: nodeItem[]
+    ): TreeNode | null{
+        return this.buildTree(tablaR, sortedNodos, 0, sortedNodos.length)
     }
 }
 

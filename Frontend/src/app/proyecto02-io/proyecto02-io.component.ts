@@ -90,12 +90,6 @@ export class Proyecto02IoComponent {
       return;
     }
 
-    /*Mostramos como prueba todos los valores de cada objeto para comprobar, pero técnicamente
-    acá llamamos la función como tal*/
-    this.objects.forEach((object, index) => {
-      console.log(`Objeto ${index + 1}: Nombre=${object.name}, Valor=${object.value}, Peso=${object.size}, Cantidad=${object.amount}`);
-    });
-
     //Calculamos el knapsack
     let resultado;
     if (this.mode === '1/0'){
