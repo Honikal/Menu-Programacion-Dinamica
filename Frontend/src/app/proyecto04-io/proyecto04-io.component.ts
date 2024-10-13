@@ -1,12 +1,15 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms'
-import { nodeItem, optimal_binary_search_tree } from '../../../../Backend/src/dynamic-programming/binary-search-tree'
+import { nodeItem, TreeNode, optimal_binary_search_tree } from '../../../../Backend/src/dynamic-programming/binary-search-tree'
+import { TreeVisualizerComponent } from 'app/tree-visualizer/tree-visualizer.component';
+
+
 
 @Component({
   selector: 'app-proyecto04-io',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, TreeVisualizerComponent],
   templateUrl: './proyecto04-io.component.html',
   styleUrl: './proyecto04-io.component.css'
 })
@@ -23,6 +26,8 @@ export class Proyecto04IoComponent {
 
   tablaA: number[][] = []; //Tabla que almacena los valores de cada nodo, los puntos a importancia se encuentran en diagonal superior
   tablaR: number[][] = []; //Tabla que almacena el orden que tendría el árbol
+
+  generatedTree: TreeNode | null = null;
 
   generateNodes(){
     this.nodos = [];
@@ -71,6 +76,13 @@ export class Proyecto04IoComponent {
     this.tablaR = resultado.R;
     this.nodos = resultado.sortedNodos;
 
+    console.log("Tablas generadas: ", this.generatedTree);
+
+    //Generamos, con los nodos obtenidos, el árbol
+    this.generatedTree = optimal_binary_search_tree.generateTree(this.tablaR, this.nodos);
+
+    console.log("Arbol generado, acá se muestra: ", this.generatedTree);
+
     //Una vez extraídos los valores como tal, los enviamos a mostrar
     this.showResults = true;
     this.showModalButton = true;
@@ -90,7 +102,8 @@ export class Proyecto04IoComponent {
       keyCount: this.keyCount,
       nodos: this.nodos,
       tablaA: this.tablaA,
-      tablaR: this.tablaR
+      tablaR: this.tablaR,
+      tree: this.generatedTree
     };
 
     //Primero, tomamos el dato, lo convertimos en un struct, y lo convertimos en JSON
@@ -129,6 +142,7 @@ export class Proyecto04IoComponent {
         this.nodos = data.nodos;
         this.tablaA = data.tablaA;
         this.tablaR = data.tablaR;
+        this.generatedTree = data.tree;
 
         alert("Datos importados correctamente");
 

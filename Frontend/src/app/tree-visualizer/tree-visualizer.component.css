@@ -1,0 +1,14 @@
+#tree {
+    display: flex;
+    justify-content: center;
+    border: 1px solid black;
+    align-items: center;
+    width: 100%;
+    height: 100%; /*Permite ajustar la altura basado en los contenidos*/
+    margin-bottom: 70px;
+}
+
+svg{
+    width: 100%;
+    height: auto;
+}
